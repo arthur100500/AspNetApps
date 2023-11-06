@@ -2,6 +2,7 @@
 
 public class CatPhoto
 {
+    public int CatPhotoId { get; set; }
     public string Url { get; set; }
     public string CatName { get; set; }
 

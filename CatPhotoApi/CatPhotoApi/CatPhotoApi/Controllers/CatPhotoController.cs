@@ -11,6 +11,10 @@ public class CatPhotoController : ControllerBase
     [Route("post")]
     public IActionResult Post([FromBody] CatPhoto p)
     {
+        using var db = new CatPhotoContext();
+        db.Add(p);
+        db.SaveChanges();
+
         return Ok();
     }
     
@@ -18,6 +22,7 @@ public class CatPhotoController : ControllerBase
     [Route("get")]
     public ActionResult<List<CatPhoto>> Get()
     {
-        return new List<CatPhoto>();
+        using var db = new CatPhotoContext();
+        return db.CatPhotos.OrderBy(b => b.CatPhotoId).ToList();
     }
 }
